@@ -15,7 +15,7 @@ import embeddings from "./embeddings.js";
 // Retrieve the most similar text
 const getVectorStore = async () => {
     const dbName = process.env.DATABASE_NAME
-    const db = await connect(process.env.DATABASE_PATH);
+    const db = await connect(process.env.DATABASE_PATH + '/' + process.env.EMBEDDING_MODEL);
     const table = await db.openTable(dbName);
     return new LanceDB(embeddings, {table});
 }
@@ -67,6 +67,7 @@ if (process.argv.length < 3) throw "Missing Question"
 const question = process.argv[2];
 console.log("Asking LLM: " + question);
 // Generate a response
-console.log(await retrievalChain.invoke({
+const response = await retrievalChain.invoke({
     messages: [new HumanMessage(question)]
-}));
+})
+console.log(response.answer);

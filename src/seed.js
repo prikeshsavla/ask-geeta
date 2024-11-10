@@ -16,23 +16,24 @@ const textSplitter = new RecursiveCharacterTextSplitter({
 });
 const splits = await textSplitter.splitDocuments(docs);
 const vectorStore = new LanceDB(embeddings, {
-    uri: process.env.DATABASE_PATH, tableName: process.env.DATABASE_NAME
+    uri: process.env.DATABASE_PATH + '/' + process.env.EMBEDDING_MODEL, tableName: process.env.DATABASE_NAME
 });
 
-const batchSize = 50;
-
-const count = splits.length / batchSize
-const promises = [];
 let startTime = new Date().getTime();
-for (let i = 0; i < count; i++) {
-    const start = i * batchSize
-    let end = (i + 1) * batchSize > splits.length ? splits.length : (i + 1) * batchSize
-    console.log(`Pushing batch ${start} - ${end}`)
-    promises.push(vectorStore.addDocuments(splits.slice(start, end)))
-}
-await Promise.all(promises).then(() => {
-    console.log('Job complete')
-});
+await vectorStore.addDocuments(splits)
+
+// const batchSize = 50;
+// const count = splits.length / batchSize
+// const promises = [];
+// for (let i = 0; i < count; i++) {
+//     const start = i * batchSize
+//     let end = (i + 1) * batchSize > splits.length ? splits.length : (i + 1) * batchSize
+//     console.log(`Pushing batch ${start} - ${end}`)
+//     promises.push(vectorStore.addDocuments(splits.slice(start, end)))
+// }
+// await Promise.all(promises).then(() => {
+//     console.log('Job complete')
+// });
 // const vectors = await embeddings.embedDocuments(splits)
 let endTime = new Date().getTime();
 console.log(`time:  ${new Date(startTime)} - ${new Date(endTime)} | ${(endTime - startTime) / 1000}`);
