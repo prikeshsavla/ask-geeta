@@ -1,0 +1,26 @@
+{
+  "name": "ask-geeta",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "module": "es2022",
+  "target": "es2017",
+  "author": "Prikesh Savla <prikesh@cashee.com>",
+  "license": "MIT",
+  "scripts": {
+    "ask-geeta": "node src/index.js",
+    "seed": "node src/seed.js"
+  },
+  "dependencies": {
+    "@langchain/community": "^0.3.12",
+    "@langchain/core": "^0.3.17",
+    "@langchain/ollama": "^0.1.2",
+    "apache-arrow": "^18.0.0",
+    "cheerio": "^1.0.0",
+    "d3-dsv": "2",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.3.5",
+    "typescript": "^5.6.3",
+    "vectordb": "^0.12.0"
+  }
+}
