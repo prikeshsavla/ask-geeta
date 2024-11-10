@@ -17,6 +17,16 @@ Ask Geeta is a LangChain RAG application built on JavaScript, utilizing large la
 Geeta. The app accepts user input in the form of questions and provides relevant answers drawn from its knowledge graph.
 
 
+```
+yarn run ask-geeta 'Why is Arjun hesitating from war?'
+
+Arjun is hesitant from war because of his affection for his 
+relatives and his moral duty to respect his teachers. He feels 
+that attacking his own kin and venerable elders would be a grave 
+sin, and he is torn between his sense of duty as a warrior and 
+his compassion for those he holds in high esteem.
+```
+
 **Features**
 ------------
 

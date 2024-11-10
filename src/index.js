@@ -62,6 +62,8 @@ If the context doesn't contain any relevant information to the question, don't m
 
 const retrievalChain = await createRetrievalChain()
 
+
+
 if (process.argv.length < 3) throw "Missing Question"
 // const question = "What qualities is Krishna telling Arjun to learn"
 const question = process.argv[2];
@@ -70,4 +72,5 @@ console.log("Asking LLM: " + question);
 const response = await retrievalChain.invoke({
     messages: [new HumanMessage(question)]
 })
+console.log(response)
 console.log(response.answer);
